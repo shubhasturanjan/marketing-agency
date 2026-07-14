@@ -1,0 +1,172 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #000000;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: #d4d4d4; /* neutral-300 */
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---------------------------------------------------------------------------
+   Bento card: structural neutral-800 border + pointer-following neon border-glow.
+   The glow follows the cursor via the --mx / --my CSS vars set in BentoCard.tsx.
+--------------------------------------------------------------------------- */
+.bento-card {
+  position: relative;
+  border: 1px solid #262626; /* neutral-800 */
+  background: linear-gradient(180deg, #0a0a0a 0%, #050505 100%);
+  border-radius: 1.25rem;
+  isolation: isolate;
+  /* Multi-dimensional depth: radiant purple glow + deep SaaS drop shadow. */
+  box-shadow: 0 0 50px rgba(157, 0, 255, 0.08),
+    0 24px 48px -24px rgba(0, 0, 0, 0.9),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.03);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.bento-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(
+    240px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(157, 0, 255, 0.65),
+    rgba(157, 0, 255, 0) 60%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: 1;
+}
+
+.bento-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    500px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(157, 0, 255, 0.08),
+    transparent 45%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bento-card:hover {
+  transform: translateY(-3px);
+  border-color: #3d3d3d;
+  box-shadow: 0 0 30px rgba(157, 0, 255, 0.2),
+    0 32px 60px -28px rgba(0, 0, 0, 1),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+}
+
+.bento-card:hover::before,
+.bento-card:hover::after {
+  opacity: 1;
+}
+
+/* Keep real content above the glow layers */
+.bento-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Radial ambient glow behind the hero knot */
+.knot-glow {
+  background: radial-gradient(
+    circle at center,
+    rgba(157, 0, 255, 0.28) 0%,
+    rgba(157, 0, 255, 0.08) 35%,
+    transparent 70%
+  );
+}
+
+/* Subtle grid texture used behind the whole page */
+.grid-texture {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse at center, #000 0%, transparent 75%);
+}
+
+/* ---------------------------------------------------------------------------
+   BubbleLogo — fluid "breathing" glass mark used in the header, hero & footer.
+--------------------------------------------------------------------------- */
+.bubble-halo {
+  border-radius: 9999px;
+  background: radial-gradient(
+    circle at 50% 45%,
+    rgba(157, 0, 255, 0.55) 0%,
+    rgba(157, 0, 255, 0.15) 40%,
+    transparent 70%
+  );
+  filter: blur(6px);
+  animation: bubble-breathe 4.5s ease-in-out infinite;
+}
+
+.bubble-drift {
+  animation: bubble-drift 6s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.bubble-core {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: bubble-pulse 4.5s ease-in-out infinite;
+}
+
+@keyframes bubble-breathe {
+  0%, 100% { opacity: 0.55; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.12); }
+}
+
+@keyframes bubble-drift {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-2px) rotate(2deg); }
+}
+
+@keyframes bubble-pulse {
+  0%, 100% { opacity: 0.5; transform: scale(0.92); }
+  50% { opacity: 1; transform: scale(1.08); }
+}
+
+/* GSAP reveal initial state — prevents flash of un-animated content */
+.reveal-init {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-init {
+    opacity: 1;
+    transform: none;
+  }
+  .bubble-halo,
+  .bubble-drift,
+  .bubble-core,
+  .animate-float,
+  .animate-pulse-dot {
+    animation: none !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
