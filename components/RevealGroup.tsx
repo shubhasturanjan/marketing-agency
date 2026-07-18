@@ -20,9 +20,13 @@ export default function RevealGroup({
 
   useGSAP(
     () => {
-      gsap.to(".reveal-init", {
-        opacity: 1,
-        y: 0,
+      // gsap.from(): elements are already visible in the DOM. GSAP briefly
+      // sets them to opacity:0/y:24, then animates back to the current state.
+      // If GSAP never runs (JS error, blocked script, etc.), content stays
+      // visible — no more "invisible cards" bug on production builds.
+      gsap.from(".reveal-init", {
+        opacity: 0,
+        y: 24,
         duration: 0.9,
         ease: "power3.out",
         stagger: 0.07,

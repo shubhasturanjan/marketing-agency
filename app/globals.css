@@ -148,11 +148,10 @@ body {
   50% { opacity: 1; transform: scale(1.08); }
 }
 
-/* GSAP reveal initial state — prevents flash of un-animated content */
-.reveal-init {
-  opacity: 0;
-  transform: translateY(24px);
-}
+/* GSAP reveal marker — content stays visible by default; the animation in
+   RevealGroup uses gsap.from() to briefly hide and reveal on mount. This
+   guarantees the page is usable even if GSAP fails to run in production. */
+.reveal-init { will-change: transform, opacity; }
 
 @media (prefers-reduced-motion: reduce) {
   .reveal-init {
