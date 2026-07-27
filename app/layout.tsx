@@ -26,6 +26,11 @@ export const metadata: Metadata = {
       "We build high-converting direct-response marketing engines and B2B growth systems designed to scale early-stage startups.",
     type: "website",
   },
+  icons: {
+    icon: "/logo-mark.jpg",
+    shortcut: "/logo-mark.jpg",
+    apple: "/logo-mark.jpg",
+  },
 };
 
 export default function RootLayout({
