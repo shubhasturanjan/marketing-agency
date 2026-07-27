@@ -6,9 +6,9 @@ import RevealGroup from "@/components/RevealGroup";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Contact — Neoogle",
+  title: "Contact | Neoogle — Book a Growth Strategy Call",
   description:
-    "Book a call, ring the founder directly, or follow the build on YouTube and Instagram.",
+    "Book a free strategy call to map the fastest growth path for your early-stage startup, or reach the founder directly by phone.",
 };
 
 export default function ContactPage() {

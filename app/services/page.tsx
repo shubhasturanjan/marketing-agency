@@ -6,9 +6,9 @@ import RevealGroup from "@/components/RevealGroup";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Services — Neoogle",
+  title: "Services | Neoogle — Growth Marketing Systems for Startups",
   description:
-    "The Total Acquisition Ecosystem: Websites & Funnels, Inbound Marketing, and Outbound Sales — a complete marketing and sales department for your startup.",
+    "Websites, funnels, inbound content, and outbound sales built into one Total Acquisition Ecosystem for early-stage startups ready to scale.",
 };
 
 const pillars = [

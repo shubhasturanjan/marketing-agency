@@ -6,9 +6,9 @@ import RevealGroup from "@/components/RevealGroup";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "About — Neoogle",
+  title: "About | Neoogle — Founder-Led Growth Marketing Agency",
   description:
-    "A founder-led, boutique growth partner engineered for speed. Zero agency bloat, deep direct-response and consumer-psychology expertise.",
+    "A boutique growth marketing partner for early-stage startups. Deep direct-response and consumer-psychology expertise, delivered by the founder.",
 };
 
 /** Small accent eyebrow used at the top of every card. */
