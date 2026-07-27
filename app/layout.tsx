@@ -17,13 +17,13 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Neoogle — Systematic Growth for Year Two Startups",
+  title: "Neoogle | Growth Marketing Agency for High-Growth Startups",
   description:
-    "Neoogle builds systematic, data-driven acquisition engines for high-potential Indian startups entering their second year of growth.",
+    "We build high-converting direct-response marketing engines and B2B growth systems designed to scale early-stage startups.",
   openGraph: {
-    title: "Neoogle — Systematic Growth for Year Two Startups",
+    title: "Neoogle | Growth Marketing Agency for High-Growth Startups",
     description:
-      "Data-driven acquisition engines for high-potential Indian startups. Boutique speed over agency bureaucracy.",
+      "We build high-converting direct-response marketing engines and B2B growth systems designed to scale early-stage startups.",
     type: "website",
   },
 };
