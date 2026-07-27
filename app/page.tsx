@@ -29,15 +29,17 @@ export default function Home() {
 
       <main className="relative mx-auto max-w-6xl px-4 pb-24 pt-32 sm:pt-36">
         <RevealGroup className="grid auto-rows-[minmax(140px,auto)] grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {/* ---- Card 1: HERO (full-width split — copy left, knot right) ---- */}
+          {/* ---- Card 1: HERO (full-width split — copy left, knot right) ----
+              Structure is deliberately minimal: NO absolute-positioned direct
+              children on the card. globals.css forces .bento-card > * to
+              position:relative + z-index:2, which broke a previous decorative
+              arc/bloom sitting as direct children and collapsed the content
+              in production. Keep every direct child a simple in-flow block. */}
           <BentoCard
             as="section"
-            className="relative overflow-hidden p-8 md:col-span-2 lg:col-span-4 lg:p-14"
+            className="p-8 md:col-span-2 lg:col-span-4 lg:p-14"
           >
-            {/* Faint decorative arc sweeping through the panel */}
-            <div className="pointer-events-none absolute -right-[20%] -top-1/2 h-[200%] w-[70%] rounded-full border border-white/[0.06]" />
-
-            <div className="relative grid items-center gap-10 lg:grid-cols-2">
+            <div className="grid items-center gap-10 lg:grid-cols-2">
               <div className="flex flex-col items-start">
                 <div className="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-black/40 px-3.5 py-1.5">
                   <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.8)]" />
@@ -46,7 +48,7 @@ export default function Home() {
                   </span>
                 </div>
 
-                <h1 className="mt-6 text-balance text-4xl font-bold leading-[1.05] tracking-tight text-white lg:text-5xl">
+                <h1 className="mt-6 text-4xl font-bold leading-[1.05] tracking-tight text-white lg:text-5xl">
                   We Help High-Potential Startups Move to the Next Level of
                   Marketing.
                 </h1>
@@ -80,13 +82,11 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="relative flex items-center justify-center py-4 lg:py-6">
-                {/* Purple bloom rising from below, like the reference render */}
-                <div className="absolute bottom-[-8%] left-1/2 h-80 w-80 -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(184,77,255,0.4),rgba(157,0,255,0.12)_45%,transparent_72%)] blur-2xl" />
+              <div className="flex items-center justify-center py-4 lg:py-6">
                 <BubbleLogo
                   variant="hero"
-                  size={540}
-                  className="relative max-w-full animate-float"
+                  size={460}
+                  className="max-w-full"
                 />
               </div>
             </div>
