@@ -1,10 +1,16 @@
 import Image from "next/image";
 
 /**
- * BubbleLogo — the real Neoogle glass-knot render. The source images sit on a
- * pure-black ground, so `mix-blend-mode: screen` drops the black out entirely
- * and only the glowing knot shows over whatever is behind it (works on the
- * black page, the blurred capsule header, and the cards alike).
+ * BubbleLogo — the real Neoogle glass-knot render.
+ *
+ * Rendered as a plain <Image>. Earlier versions used mix-blend-mode: screen
+ * plus a radial mask-image to drop the JPG's black background out and feather
+ * the edges. On the Vercel production build the mask was being interpreted in
+ * luminance mode, where its `#000` visible color hid the entire image — the
+ * hero showed blank while the neighbouring text card rendered fine. Both
+ * effects have been removed; the JPG's black ground reads as effectively
+ * identical to the card's #0a0a0a→#050505 gradient, so the image integrates
+ * cleanly without any compositing tricks that can fail in production.
  *
  * variant "mark" → square logo used in the header, footer, and small marks.
  * variant "hero" → wide render used as the hero visual.
@@ -32,7 +38,7 @@ export default function BubbleLogo({
       style={{ width: w, height: h }}
       aria-hidden="true"
     >
-      {/* Soft bloom behind the hero mark for extra depth */}
+      {/* Soft breathing bloom behind the hero mark for extra depth */}
       {animate && isHero && (
         <span className="bubble-halo pointer-events-none absolute inset-0" />
       )}
@@ -45,14 +51,6 @@ export default function BubbleLogo({
         className={`relative h-full w-full select-none object-contain ${
           animate ? "bubble-drift" : ""
         }`}
-        style={{
-          mixBlendMode: "screen",
-          // Feather the edges so the image's black ground never reads as a box
-          WebkitMaskImage:
-            "radial-gradient(ellipse 74% 74% at 50% 50%, #000 60%, transparent 84%)",
-          maskImage:
-            "radial-gradient(ellipse 74% 74% at 50% 50%, #000 60%, transparent 84%)",
-        }}
       />
     </span>
   );
