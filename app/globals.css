@@ -148,15 +148,27 @@ body {
   50% { opacity: 1; transform: scale(1.08); }
 }
 
-/* GSAP reveal marker — content stays visible by default; the animation in
-   RevealGroup uses gsap.from() to briefly hide and reveal on mount. This
-   guarantees the page is usable even if GSAP fails to run in production. */
-.reveal-init { will-change: transform, opacity; }
+/* Card entrance — PURE CSS, transform-only. Opacity is never touched, so
+   every element is fully visible at every frame of the animation and before
+   it starts. No JS dependency: if animations are unsupported or disabled the
+   card simply sits in its final position. This is the guaranteed-visible
+   replacement for the old JS/opacity reveal. */
+.reveal-init {
+  animation: reveal-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes reveal-rise {
+  from {
+    transform: translateY(24px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .reveal-init {
-    opacity: 1;
-    transform: none;
+    animation: none;
   }
   .bubble-halo,
   .bubble-drift,
