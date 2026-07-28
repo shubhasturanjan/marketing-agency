@@ -32,10 +32,17 @@ export default function BubbleLogo({
   const w = size;
   const h = Math.round(size / ratio);
 
+  // Hero variant: scale down to fit narrow viewports (up to `size` wide, keeps
+  // aspect ratio via CSS). Mark variant: stays at a fixed small footprint —
+  // never big enough to overflow.
+  const wrapperStyle: React.CSSProperties = isHero
+    ? { width: "100%", maxWidth: w, aspectRatio: `${w} / ${h}` }
+    : { width: w, height: h };
+
   return (
     <span
       className={`relative inline-flex items-center justify-center ${className}`}
-      style={{ width: w, height: h }}
+      style={wrapperStyle}
       aria-hidden="true"
     >
       {/* Soft breathing bloom behind the hero mark for extra depth */}

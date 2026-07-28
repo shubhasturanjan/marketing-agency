@@ -34,13 +34,18 @@ export default function Home() {
               children on the card. globals.css forces .bento-card > * to
               position:relative + z-index:2, which broke a previous decorative
               arc/bloom sitting as direct children and collapsed the content
-              in production. Keep every direct child a simple in-flow block. */}
+              in production. Keep every direct child a simple in-flow block.
+
+              Mobile-safety: both grid children carry `min-w-0` so they can
+              shrink below their content width (grid items default to
+              min-width: auto, which would otherwise force the card wider
+              than the viewport at 460px BubbleLogo intrinsic width). */}
           <BentoCard
             as="section"
-            className="p-8 md:col-span-2 lg:col-span-4 lg:p-14"
+            className="p-6 sm:p-8 md:col-span-2 lg:col-span-4 lg:p-14"
           >
-            <div className="grid items-center gap-10 lg:grid-cols-2">
-              <div className="flex flex-col items-start">
+            <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-10">
+              <div className="flex min-w-0 flex-col items-start">
                 <div className="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-black/40 px-3.5 py-1.5">
                   <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.8)]" />
                   <span className="text-xs font-medium text-neutral-300">
@@ -48,7 +53,7 @@ export default function Home() {
                   </span>
                 </div>
 
-                <h1 className="mt-6 text-4xl font-bold leading-[1.05] tracking-tight text-white lg:text-5xl">
+                <h1 className="mt-6 text-3xl font-bold leading-[1.1] tracking-tight text-white sm:text-4xl lg:text-5xl">
                   We Help High-Potential Startups Move to the Next Level of
                   Marketing.
                 </h1>
@@ -82,7 +87,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="flex items-center justify-center py-4 lg:py-6">
+              <div className="flex min-w-0 items-center justify-center py-2 lg:py-6">
                 <BubbleLogo
                   variant="hero"
                   size={460}
