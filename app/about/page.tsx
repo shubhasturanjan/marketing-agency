@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "About | Neoogle — Founder-Led Growth Marketing Agency",
   description:
     "A boutique growth marketing partner for early-stage startups. Deep direct-response and consumer-psychology expertise, delivered by the founder.",
+  alternates: { canonical: "/about" },
 };
 
 /** Small accent eyebrow used at the top of every card. */

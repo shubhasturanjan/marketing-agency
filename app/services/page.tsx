@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Services | Neoogle — Growth Marketing Systems for Startups",
   description:
     "Websites, funnels, inbound content, and outbound sales built into one Total Acquisition Ecosystem for early-stage startups ready to scale.",
+  alternates: { canonical: "/services" },
 };
 
 const pillars = [

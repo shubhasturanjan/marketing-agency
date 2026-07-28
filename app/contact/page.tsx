@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Contact | Neoogle — Book a Growth Strategy Call",
   description:
     "Book a free strategy call to map the fastest growth path for your early-stage startup, or reach the founder directly by phone.",
+  alternates: { canonical: "/contact" },
 };
 
 export default function ContactPage() {

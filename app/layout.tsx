@@ -17,14 +17,26 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://neoogle.com"),
   title: "Neoogle | Growth Marketing Agency for High-Growth Startups",
   description:
     "We build high-converting direct-response marketing engines and B2B growth systems designed to scale early-stage startups.",
+  alternates: { canonical: "/" },
   openGraph: {
     title: "Neoogle | Growth Marketing Agency for High-Growth Startups",
     description:
       "We build high-converting direct-response marketing engines and B2B growth systems designed to scale early-stage startups.",
+    url: "https://neoogle.com",
+    siteName: "Neoogle",
     type: "website",
+    images: [{ url: "/logo-mark.jpg", width: 512, height: 512, alt: "Neoogle" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Neoogle | Growth Marketing Agency for High-Growth Startups",
+    description:
+      "We build high-converting direct-response marketing engines and B2B growth systems designed to scale early-stage startups.",
+    images: ["/logo-mark.jpg"],
   },
   icons: {
     icon: "/logo-mark.jpg",
